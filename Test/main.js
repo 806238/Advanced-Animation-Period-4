@@ -11,7 +11,7 @@ function init(){
     // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
     context = canvas.getContext("2d");
     x = y = 100;    // initial x,y canvas location
-    dx = dy = 2;    // velocity in x and y directions
+    dx = dy = 4;    // velocity in x and y directions
     animate();      // kick off the animation
 }
 
@@ -21,6 +21,7 @@ function animate() {
     context.clearRect(0,0,canvas.width,canvas.height);
     update();   // update location
     render();     // render
+    bounce();
     requestAnimationFrame(animate); // next cycle
 }
 
