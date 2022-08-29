@@ -3,28 +3,30 @@
 window.addEventListener("load", init);
 
 // global variables
-var canvas, context, x, y, dx, dy;
-var g = {
-    a:12,
-    b:3
-};
+let canvas, context;
+let balls = [];
 
 function init(){
-    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement
     canvas = document.getElementById("cnv");
-    // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
     context = canvas.getContext("2d");
-    x = y = 100;    // initial x,y canvas location
-    dx = dy = 2;    // velocity in x and y directions
+    loadBalls(3);
     animate();      // kick off the animation
+}
+
+function loadBalls(n){
+    for(let i = 0; i<n; i++){
+        let x = Math.random()*canvas.width;
+        let y = Math.random()*canvas.height;
+        balls.push(new Ball(x,y, 30));
+    }
 }
 
 // every animation cycle
 function animate() {
-    // erase the HTMLCanvasElement
     context.clearRect(0,0,canvas.width,canvas.height);
-    update();   // update location
-    draw();     // render
+    for(let i = 0; i<balls.length; i++){
+        balls[i].run();
+    }
     requestAnimationFrame(animate); // next cycle
 }
 
@@ -35,7 +37,7 @@ function update() {
 }
 
 // render a circle
-function draw() {
+/*function draw() {
     let radius = 15; // local variable radius of the circle
     // create the circle path
     context.beginPath();    // clear old path
@@ -45,4 +47,4 @@ function draw() {
     context.fillStyle = "blue";     // color to stroke
     context.fill();     // render the fill
     context.stroke();   // render the stroke
-}
+}*/
