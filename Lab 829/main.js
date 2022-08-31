@@ -9,7 +9,7 @@ let balls = [];
 function init(){
     canvas = document.getElementById("cnv");
     context = canvas.getContext("2d");
-    loadBalls(3);
+    loadBalls(15);
     animate();      // kick off the animation
 }
 
@@ -29,22 +29,3 @@ function animate() {
     }
     requestAnimationFrame(animate); // next cycle
 }
-
-// move the circle to a new location
-function update() {
-    x += dx;    // update x coordinate of location with x velocity
-    y += dy;    // update y coordinate of location with y velocity
-}
-
-// render a circle
-/*function draw() {
-    let radius = 15; // local variable radius of the circle
-    // create the circle path
-    context.beginPath();    // clear old path
-    // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc
-    context.arc(x, y, radius, 0, 2 * Math.PI);
-    context.strokeStyle = "black";  // color to fill
-    context.fillStyle = "blue";     // color to stroke
-    context.fill();     // render the fill
-    context.stroke();   // render the stroke
-}*/
