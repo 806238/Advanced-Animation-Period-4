@@ -30,8 +30,9 @@ JSVector.prototype.getDirection = function(){
 }
 
 // Add another vector to this vector
-JSVector.prototype.add = function(v2){
-
+JSVector.prototype.add = function(v1, v2){
+    this.v1.x += this.v2.x
+    this.v1.y += this.v2.y
     return this;
 }
 

@@ -27,7 +27,7 @@ Ball.prototype.render = function(){
 }
 
 Ball.prototype.update = function () {
-
+    add(this.loc, this.vel);
 }
 
 Ball.prototype.bounce = function () { 

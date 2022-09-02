@@ -9,7 +9,7 @@ let balls = [];
 function init(){
     canvas = document.getElementById("cnv");
     context = canvas.getContext("2d");
-    loadBalls(15);
+    loadBalls(10);
     animate();      // kick off the animation
 }
 
