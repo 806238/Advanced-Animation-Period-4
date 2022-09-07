@@ -25,7 +25,7 @@ JSVector.prototype.setDirection = function(angle){
     return this;
 }
 
-// Return the direction (angle) of the vector
+// Return the direction (angle) of the vector *(WORKS)
 JSVector.prototype.getDirection = function(){
     return Math.atan2(this.y, this.x);
 }
@@ -64,7 +64,7 @@ JSVector.prototype.multiply = function(scalar){
 // Divide this vector by a scalar
 JSVector.prototype.divide = function(scalar){
     this.x /= scalar;
-    this.x /= scalar;
+    this.y /= scalar;
     return this;
 }
 
