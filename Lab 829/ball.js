@@ -3,11 +3,11 @@ function Ball(x,y,d){
     let dx = Math.random()*4-2
     let dy = Math.random()*4-2
     this.vel = new JSVector(dx, dy);
-    this.acc = new JSVector(0, 0.05);
+    this.acc = new JSVector(0, .05);
     this.diam = d;
-    this.colorArray = ["red", "orange", "green", "blue", "purple"]
-    this.colorIndex = 1
-    this.color = "green"
+    this.colorArray = ["red", "orange", "green", "blue", "purple"];
+    this.colorIndex = Math.floor(Math.random() * this.colorArray.length);
+    this.color = this.colorArray[this.colorIndex];
 }
 
 Ball.prototype.run = function(){
@@ -27,9 +27,21 @@ Ball.prototype.render = function(){
 }
 
 Ball.prototype.update = function () {
-    add(this.loc, this.vel);
+    this.loc.add(this.vel);
+    //this.vel.add(this.acc);
 }
 
 Ball.prototype.bounce = function () { 
-
+    if(this.loc.x > canvas.width){
+        this.vel.x = -this.vel.x;
+    }
+    if(this.loc.x < 0){
+        this.vel.x = -this.vel.x;
+    }
+    if(this.loc.y > canvas.height){
+        this.vel.y = -this.vel.y;
+    }
+    if(this.loc.y < 0){
+        this.vel.y = -this.vel.y;
+    }
 }
