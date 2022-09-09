@@ -5,7 +5,8 @@ window.addEventListener("load", init);
 // global variables
 let canvas, context;
 let balls = [];
-//var attr = new Attractor(1,1,30);
+
+
 
 function init(){
     canvas = document.getElementById("cnv");
