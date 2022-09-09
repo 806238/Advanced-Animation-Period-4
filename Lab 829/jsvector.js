@@ -89,7 +89,7 @@ JSVector.prototype.distance = function(v2){
 
 // Return the square of the distance between this vector and another one
 JSVector.prototype.distanceSquared = function(v2){
-    return Math.pow(distance(v2));
+    return Math.pow(distance(v2),2);
 }
 
 // Rotate this vector by some number of radians
@@ -110,7 +110,7 @@ JSVector.prototype.copy = function(){
     return new JSVector(this.x,this.y);
 }
 
-// Override inherited toString() to return a description of this instance
+// Override inherited toString() to return a description of this instance - Works
 JSVector.prototype.toString = function() {
-    
+    return "Magnitude: " + this.getMagnitude() + ", Direction: " + this.getDirection() + ", x: " + this.x + ", y:" + this.y;
 }

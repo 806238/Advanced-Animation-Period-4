@@ -27,8 +27,18 @@ Ball.prototype.render = function(){
 }
 
 Ball.prototype.update = function () {
-    this.loc.add(this.vel);
+    //this.loc.add(this.vel);
     //this.vel.add(this.acc);
+
+    if(this !== balls[0]){
+    this.acc = balls[0].loc.sub(this.loc);
+    this.acc.normalize();   
+    this.acc.multiply(0.5)
+    }
+    this.vel.add(this.acc);     
+    this.vel.limit(3);          
+    this.loc.add(this.vel);
+        
 }
 
 Ball.prototype.bounce = function () { 
