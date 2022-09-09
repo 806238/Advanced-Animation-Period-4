@@ -28,13 +28,12 @@ Ball.prototype.render = function(){
 
 Ball.prototype.update = function () {
     this.loc.add(this.vel);
-    this.vel.add(this.acc);
+    //this.vel.add(this.acc);
 
     if(this === balls[0]){
         this.color = "black";
-        balls[0].loc.sub(this.loc)
-
-    }    
+        
+    }
 }
 
 Ball.prototype.bounce = function () { 
@@ -65,3 +64,6 @@ Ball.prototype.bounce = function () {
     this.vel.limit(3);          
     this.loc.add(this.vel);
     */
+
+
+    
