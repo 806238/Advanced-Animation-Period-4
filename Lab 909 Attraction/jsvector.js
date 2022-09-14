@@ -78,14 +78,15 @@ JSVector.prototype.normalize = function(){
 // Limit the magnitude of this vector
 JSVector.prototype.limit = function(lim){
     if(this.getMagnitude() > lim){
-        this.getMagnitude(lim);
+        this.setMagnitude(lim);
     }
     return this;
 }
 
 // Return the distance between this vector and another one
 JSVector.prototype.distance = function(v2){
-    return Math.sqrt((Math.pow(v2.x - this.x),2) + ((Math.pow(v2.y - this.y),2)));
+    return Math.sqrt(Math.pow((v2.x - this.x), 2) + Math.pow((v2.y - this.y), 2))   ;
+           
 }
 
 // Return the square of the distance between this vector and another one
