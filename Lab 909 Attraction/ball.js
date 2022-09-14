@@ -27,43 +27,26 @@ Ball.prototype.render = function(){
 }
 
 Ball.prototype.update = function () {
-    this.loc.add(this.vel);
     //this.vel.add(this.acc);
+    this.loc.add(this.vel);
 
     if(this === balls[0]){
-        this.color = "black";
-        
+        this.color = "Black";
+        for(let i = 1; i<balls.length; i++){
+            this.acc = balls[0].loc.sub(balls[i].loc)
+            this.acc.normalize();
+            this.acc.multiply(.05)
+            balls[i].vel.add(this.acc);
+            //balls[i].acc.limit(3);
+            //balls[i].vel.limit(3);
+
+        }
     }
 }
 
 Ball.prototype.bounce = function () { 
-    if(this.loc.x > canvas.width){
-        this.vel.x = -this.vel.x;
-    }
-    if(this.loc.x < 0){
-        this.vel.x = -this.vel.x;
-    }
-    if(this.loc.y > canvas.height){
-        this.vel.y = -this.vel.y;
-    }
-    if(this.loc.y < 0){
-        this.vel.y = -this.vel.y;
-    }
-}
-
-
-
-
-
-/*if(this !== balls[0]){
-    this.acc = balls[0].loc.sub(this.loc);
-    this.acc.normalize();   
-    this.acc.multiply(0.5)
-    }
-    this.vel.add(this.acc);     
-    this.vel.limit(3);          
-    this.loc.add(this.vel);
-    */
-
-
-    
+    if(this.loc.x > canvas.width) this.loc.x = 0
+    if(this.loc.x < 0) this.loc.x = canvas.width
+    if(this.loc.y > canvas.height) this.loc.y = 0
+    if(this.loc.y < 0) this.loc.y = canvas.height
+}    

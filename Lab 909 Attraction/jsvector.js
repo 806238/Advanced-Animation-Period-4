@@ -115,6 +115,4 @@ JSVector.prototype.toString = function() {
     return "Magnitude: " + this.getMagnitude() + ", Direction: " + this.getDirection() + ", x: " + this.x + ", y:" + this.y;
 }
 
-JSVector.prototype.attract = function(){
-    
-}
+
