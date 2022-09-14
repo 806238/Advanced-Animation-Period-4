@@ -3,7 +3,7 @@ function Ball(x,y,d){
     let dx = Math.random()*4-2
     let dy = Math.random()*4-2
     this.vel = new JSVector(dx, dy);
-    this.acc = new JSVector(0, .05);
+    this.acc = new JSVector(0, 0);
     this.diam = d;
     this.colorArray = ["red", "orange", "green", "blue", "purple"];
     this.colorIndex = Math.floor(Math.random() * this.colorArray.length);
@@ -27,26 +27,52 @@ Ball.prototype.render = function(){
 }
 
 Ball.prototype.update = function () {
-    //this.vel.add(this.acc);
-    this.loc.add(this.vel);
+    let d = balls[0].loc.sub(this.loc)
 
     if(this === balls[0]){
         this.color = "Black";
-        for(let i = 1; i<balls.length; i++){
-            this.acc = balls[0].loc.sub(balls[i].loc)
-            this.acc.normalize();
-            this.acc.multiply(.05)
-            balls[i].vel.add(this.acc);
-            //balls[i].acc.limit(3);
-            //balls[i].vel.limit(3);
-
-        }
     }
+
+    if(this !== balls[0]){
+        /*if(d < 300){
+        this.acc = JSVector.subGetNew(balls[0].loc, this.loc)  
+        }
+        if(d < 50){
+        this.acc = JSVector.subGetNew(this.loc, balls[0].loc)        
+        }*/
+        
+        this.acc = JSVector.subGetNew(balls[0].loc, this.loc)
+        this.acc.normalize();
+        this.acc.multiply(.5)
+        
+    }
+
+    this.vel.add(this.acc);
+    this.vel.limit(.01);
+    this.loc.add(this.vel);
 }
 
 Ball.prototype.bounce = function () { 
+    if(this.loc.x > canvas.width){
+        this.vel.x = -this.vel.x;
+    }
+    if(this.loc.x < 0){
+        this.vel.x = -this.vel.x;
+    }
+    if(this.loc.y > canvas.height){
+        this.vel.y = -this.vel.y;
+    }
+    if(this.loc.y < 0){
+        this.vel.y = -this.vel.y;
+    }
+}    
+
+/*
     if(this.loc.x > canvas.width) this.loc.x = 0
     if(this.loc.x < 0) this.loc.x = canvas.width
     if(this.loc.y > canvas.height) this.loc.y = 0
     if(this.loc.y < 0) this.loc.y = canvas.height
-}    
+*/
+
+/*
+}*/
