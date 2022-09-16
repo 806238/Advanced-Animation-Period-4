@@ -1,10 +1,11 @@
 function Ball(x,y,d){
     this.loc = new JSVector(x, y);
-    this.vel = new JSVector(0, 0);
+    let dx = Math.random()*4-2
+    let dy = Math.random()*4-2
+    this.vel = new JSVector(dx, dy);
     this.acc = new JSVector(0, .05);
     this.diam = d;
     this.color = "#ADD8E6";
-    this.isOverlapping = false;
 }
 
 Ball.prototype.run = function(){
@@ -15,26 +16,32 @@ Ball.prototype.run = function(){
 }
 
 Ball.prototype.Overlapping = function(){ 
-    isOverlapping = false;
     this.color = "#ADD8E6";
     for(let i = 0; i < balls.length; i++){
         if(this !== balls[i]){
+            this.acc = JSVector.subGetNew(this.loc, balls[i].loc)        
+                this.acc.normalize();
+                this.acc.multiply(.05);
         let d = this.loc.distance(balls[i].loc);
             if(d < this.diam){
-                isOverlapping = true;
                 this.color = "blue";
-                this.acc = JSVector.subGetNew(this.loc, balls[i].loc)        
-                this.acc.normalize();
-                this.acc.multiply(.05);  
+                  
+            } if(d < 50){
+                context.beginPath();
+                context.moveTo(this.loc.x, this.loc.y);
+                context.lineTo(balls[i].loc.x, balls[i].loc.y);
+                context.strokeStyle = 'Black';
+                context.lineWidth = 1;
+                context.stroke();
             }
         }
     }
 }
 
 Ball.prototype.render = function(){
-    let radius = 15; // local variable radius of the circle
+    //let radius = 15; // local variable radius of the circle
     context.beginPath();    // clear old path
-    context.arc(this.loc.x, this.loc.y, radius, 0, 2 * Math.PI);
+    context.arc(this.loc.x, this.loc.y, this.diam/2, 0, 2 * Math.PI);
     context.strokeStyle = this.color;  // color to fill
     context.fillStyle = this.color;     // color to stroke
     context.fill();     // render the fill
@@ -44,8 +51,8 @@ Ball.prototype.render = function(){
 Ball.prototype.update = function () {
     this.vel.x = Math.random()*6-3;
     this.vel.y = Math.random()*6-3;
-    this.vel.limit(3);
     this.loc.add(this.vel);
+    this.vel.limit(1);
     this.vel.add(this.acc);
     }
 
