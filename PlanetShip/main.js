@@ -5,11 +5,13 @@ window.addEventListener("load", init);
 // global variables
 let canvas, context;
 let Ships = [];
+let planet;
+let flame
 
 function init(){
     canvas = document.getElementById("cnv");
     context = canvas.getContext("2d");
-    loadShips(1);
+    loadShips(3);
     animate();      // kick off the animation
 }
 

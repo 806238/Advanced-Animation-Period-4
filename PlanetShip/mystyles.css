@@ -1,5 +1,6 @@
 
 
 canvas {
-    border: solid black 2px;
+    border: solid blue 2px;
+    background-color: black;
 }
