@@ -55,7 +55,7 @@ Ship.prototype.render = function(){
     context.stroke();
     context.closePath();
     context.restore();
-    }
+    } 
 }
 
 Ship.prototype.update = function () {
@@ -85,16 +85,16 @@ Ship.prototype.update = function () {
 
 
 Ship.prototype.checkEdges = function () { 
-    if(this.loc.x > canvas.width){
+    if(this.loc.x >= canvas.width){
         this.vel.x = -this.vel.x;
     }
-    if(this.loc.x < 0){
+    if(this.loc.x <= 0){
         this.vel.x = -this.vel.x;
     }
-    if(this.loc.y > canvas.height){
+    if(this.loc.y >= canvas.height){
         this.vel.y = -this.vel.y;
     }
-    if(this.loc.y < 0){
+    if(this.loc.y <= 0){
         this.vel.y = -this.vel.y;
     }
 }
