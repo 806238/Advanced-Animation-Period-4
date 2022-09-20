@@ -11,7 +11,7 @@ let flame
 function init(){
     canvas = document.getElementById("cnv");
     context = canvas.getContext("2d");
-    loadShips(3);
+    loadShips(5);
     animate();      // kick off the animation
 }
 
