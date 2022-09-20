@@ -5,7 +5,7 @@ function Ship(x,y,d){
     this.vel = new JSVector(dx, dy);
     this.acc = new JSVector(0, .05);
     this.diam = d;
-    this.color = "yellow";
+    this.color = "gray";
 }
 
 Ship.prototype.run = function(){
@@ -35,7 +35,7 @@ Ship.prototype.render = function(){
     context.beginPath();
     context.arc(this.loc.x, this.loc.y, this.diam, 0, 2 * Math.PI);
     context.strokeStyle = "black";
-    context.fillStyle = "green";
+    context.fillStyle = "#7373DF";
     context.fill();
     context.stroke();
     context.closePath();
@@ -46,23 +46,16 @@ Ship.prototype.render = function(){
     context.translate(Ships[0].loc.x, Ships[0].loc.y);
     context.rotate(Ships[0].vel.getDirection());
     context.moveTo(this.diam-30, 0);
-    context.lineTo(-10, this.diam/8);
+    context.lineTo(-10, this.diam/3);
     context.lineTo(Math.random()*((this.diam-70) - (this.diam-40)) + (this.diam-40), 0);
-    context.lineTo(-10, -this.diam/8);
-    context.strokeStyle = "red";
-    context.fillStyle = "red";
+    context.lineTo(-10, -this.diam/3);
+    context.strokeStyle = "#FF3A00";
+    context.fillStyle = "#FF3A00";
     context.fill();
     context.stroke();
     context.closePath();
     context.restore();
-    } /*else {
-    context.beginPath();
-    context.arc(this.loc.x, this.loc.y, this.diam, 0, 2 * Math.PI);
-    context.strokeStyle = "white";
-    context.fillStyle = "white";
-    context.fill();
-    context.stroke();
-    }*/
+    }
 }
 
 Ship.prototype.update = function () {
