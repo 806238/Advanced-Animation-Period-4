@@ -97,8 +97,8 @@ ship.render = function(){
     context.lineTo(0, ship.diam/2);
     context.lineTo(ship.diam-20, 0);
     context.lineTo(0, -ship.diam/2);
-    context.strokeStyle = "red"; 
-    context.fillStyle = "red";     
+    context.strokeStyle = "gray"; 
+    context.fillStyle = "gray";     
     context.fill();     
     context.stroke()
     context.closePath();
