@@ -18,12 +18,10 @@ function loadPlanets(n){
     for(let i = 0; i<n; i++){
         let x = Math.random()*canvas.width;
         let y = Math.random()*canvas.height;
-        let d = Math.random()*(20-10)+10;
         let n = Math.floor(Math.random()*5)
-        planets.push(new Planet(x,y,d,n));
+        planets.push(new Planet(x,y,20,n));
     }
 }
-
 
 
 // every animation cycle

@@ -10,17 +10,19 @@ function Planet(x, y, d, n){
     this.numOrbs = n;
     let orbiters = [];
     for(let i = 0; i<this.numOrbs; i++){
-        let x = Math.random()*canvas.width;
-        let y = Math.random()*canvas.height;
-        let d = Math.random()*(20-10)+10;
-        orbiters.push(new Orbiter(x,y,d));
+        orbiters.push(new Orbiter(this.loc.x,this.loc.y, Math.PI*2/this.numOrbs));
     }
 }
 
 Planet.prototype.run = function(){
     this.render();
     this.update();
-    this.checkEdges();
+    this.checkEdges();  
+    for(let i = 0; i<orbiters.length; i++){
+        let orb = this.orbiters[i];
+        orb.update();
+        orb.render();
+    } 
 }
 
 Planet.prototype.render = function(){
