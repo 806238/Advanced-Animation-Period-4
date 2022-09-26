@@ -8,26 +8,28 @@ function Planet(x, y, d, n){
     this.colorIndex = Math.floor(Math.random() * this.colorArray.length);
     this.color = this.colorArray[this.colorIndex];
     this.numOrbs = n;
-    let orbiters = [];
-    for(let i = 0; i<this.numOrbs; i++){
-        orbiters.push(new Orbiter(this.loc.x,this.loc.y, Math.PI*2/this.numOrbs));
+    this.orbiters = [];
+    for(let i = 0;i<this.numOrbs;i++){
+        this.orbiters.push(new Orbiter(this.loc.x, this.loc.y, 2*Math.PI/this.numOrbs));
+    }
+
+    for(let i = 0; i<this.orbiters.length; i++){
+        this.orbiters[i].run();
     }
 }
 
 Planet.prototype.run = function(){
     this.render();
     this.update();
-    this.checkEdges();  
-    for(let i = 0; i<orbiters.length; i++){
-        let orb = this.orbiters[i];
-        orb.update();
-        orb.render();
-    } 
+    this.checkEdges();
 }
 
 Planet.prototype.render = function(){
     context.beginPath();
-    context.arc(this.loc.x, this.loc.y, this.diam, 0, 2 * Math.PI);
+    context.moveTo(this.loc.x, this.loc.y);
+    context.lineTo(this.loc.x+20,this.loc.y);
+    context.lineTo(this.loc.x+20,this.loc.y+20);
+    context.lineTo(this.loc.x,this.loc.y+20);
     context.strokeStyle = this.color;
     context.fillStyle = this.color;
     context.fill();
@@ -48,5 +50,6 @@ Planet.prototype.checkEdges = function () {
     if(this.loc.y > canvas.height) this.loc.y = 0
     if(this.loc.y < 0) this.loc.y = canvas.height
 }
+
 
 
