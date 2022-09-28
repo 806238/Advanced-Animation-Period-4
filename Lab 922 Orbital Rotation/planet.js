@@ -4,21 +4,20 @@ function Planet(x, y, d, n){
     let dy = Math.random()*10-5;
     this.vel = new JSVector(dx, dy);
     this.diam = d;
-    this.colorArray = ["red", "orange", "yellow", "green", "blue", "purple", "pink", "brown", "gray"]
+    this.colorArray = ["red", "orange", "yellow", "green", "blue", "purple", "pink"]
     this.colorIndex = Math.floor(Math.random() * this.colorArray.length);
     this.color = this.colorArray[this.colorIndex];
     this.numOrbs = n;
     this.orbiters = [];
     for(let i = 0;i<this.numOrbs;i++){
-        this.orbiters.push(new Orbiter(this.loc.x, this.loc.y, 2*Math.PI/this.numOrbs));
-    }
-
-    for(let i = 0; i<this.orbiters.length; i++){
-        this.orbiters[i].run();
+        this.orbiters.push(new Orbiter(this.loc.x, this.loc.y, i*(2*Math.PI/this.numOrbs)));
     }
 }
 
 Planet.prototype.run = function(){
+    for(let i = 0; i<this.orbiters.length; i++){
+        this.orbiters[i].run(this.loc.x, this.loc.y);
+    }
     this.render();
     this.update();
     this.checkEdges();
@@ -26,10 +25,10 @@ Planet.prototype.run = function(){
 
 Planet.prototype.render = function(){
     context.beginPath();
-    context.moveTo(this.loc.x, this.loc.y);
-    context.lineTo(this.loc.x+20,this.loc.y);
-    context.lineTo(this.loc.x+20,this.loc.y+20);
-    context.lineTo(this.loc.x,this.loc.y+20);
+    context.moveTo(this.loc.x-10, this.loc.y+10);
+    context.lineTo(this.loc.x+10,this.loc.y+10);
+    context.lineTo(this.loc.x+10,this.loc.y-10);
+    context.lineTo(this.loc.x-10,this.loc.y-10);
     context.strokeStyle = this.color;
     context.fillStyle = this.color;
     context.fill();
