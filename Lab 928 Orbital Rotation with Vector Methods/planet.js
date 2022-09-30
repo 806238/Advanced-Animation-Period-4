@@ -10,13 +10,13 @@ function Planet(x, y, d, n) {
     this.numOrbs = n;
     this.orbiters = [];
     for (let i = 0; i < this.numOrbs; i++) {
-        this.orbiters.push(new Orbiter(this.loc.x, this.loc.y, i * (2 * Math.PI / this.numOrbs)));
+        this.orbiters.push(new Orbiter(this, i * (2 * Math.PI / this.numOrbs)));
     }
 }
 
 Planet.prototype.run = function () {
     for (let i = 0; i < this.orbiters.length; i++) {
-        this.orbiters[i].run(this.loc.x, this.loc.y);
+        this.orbiters[i].run();
     }
     this.render();
     this.update();
