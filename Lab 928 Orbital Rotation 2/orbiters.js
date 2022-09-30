@@ -1,13 +1,14 @@
 function Orbiter(x, y, a) {
-    this.loc = new JSVector(x, y);
-    this.rad = 10;
-    this.angVel = .05;
+    this.parentLoc = new JSVector(x,y);
+    this.parentToOrb = new JSVector(x,y);
+    this.orbRad = 50;
     this.angle = a;
-    this.orbloc = new JSVector(this.loc.x + this.orbRad * Math.cos(this.angle), this.loc.y + this.orbRad * Math.sin(this.angle));
-    this.orbRad = new JSVector(x,   y);   
+    this.parentToOrb.setMagnitude(this.orbRad);
+    this.parentToOrb.setDirection(this.angle);
+    this.orbLoc = JSVector.addGetNew(this.parentLoc, this.parentToOrb);
     this.colorArray = ["red", "orange", "yellow", "green", "blue", "purple", "pink"]
     this.colorIndex = Math.floor(Math.random() * this.colorArray.length);
-    this.color = this.colorArray[this.colorIndex];;
+    this.color = this.colorArray[this.colorIndex];
 }
 
 Orbiter.prototype.run = function (x,y) {
@@ -19,7 +20,7 @@ Orbiter.prototype.render = function () {
     //orbiter
     context.save();
     context.beginPath();
-    context.arc(this.orbloc.x, this.orbloc.y, this.rad, 0, 2 * Math.PI); //circle
+    context.arc(this.orbLoc.x, this.orbLoc.y, 10, 0, 2 * Math.PI); //circle
     context.strokeStyle = this.color;
     context.fillStyle = this.color;
     context.fill();
@@ -29,8 +30,8 @@ Orbiter.prototype.render = function () {
 
     //line
     context.beginPath();
-    context.moveTo(this.orbloc.x, this.orbloc.y);
-    context.lineTo(this.loc.x, this.loc.y);
+    context.moveTo(this.orbLoc.x, this.orbLoc.y);
+    context.lineTo(this.parentLoc.x, this.parentLoc.y);
     context.strokeStyle = this.color;
     context.lineWidth = 1;
     context.stroke();
@@ -38,12 +39,9 @@ Orbiter.prototype.render = function () {
 }
 
 Orbiter.prototype.update = function (x,y) {
-    this.loc.x = x;
-    this.loc.y = y;
-    this.orbloc = JSVector.addGetNew(this.loc, this.orbRad);
-    this.orbloc.normalize();
-    this.orbloc.setMagnitude(this.orbRad.x)
-    this.orbloc.setDirection(this.orbRad.x)
+    this.parentLoc.x = x;
+    this.parentLoc.y = y;
+    this.parentToOrb.setDirection(this.parentToOrb.getDirection()-.1);
+    this.orbLoc.x = this.parentLoc.x + this.orbRad * Math.cos(this.parentToOrb.getDirection());
+    this.orbLoc.y = this.parentLoc.y + this.orbRad * Math.sin(this.parentToOrb.getDirection());
 }
-
-

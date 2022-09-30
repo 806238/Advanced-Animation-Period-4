@@ -11,7 +11,7 @@ canvas = document.getElementById("cnv");
 context = canvas.getContext("2d");
 
 function init() {
-    loadPlanets(20);
+    loadPlanets(10);
     animate();      // kick off the animation
 }
 
@@ -19,7 +19,7 @@ function loadPlanets(n) {
     for (let i = 0; i < n; i++) {
         let x = Math.random() * canvas.width;
         let y = Math.random() * canvas.height;
-        let n = Math.floor(Math.random() * 5 + 1)
+        let n = Math.floor(Math.random() * 20 + 1)
         planets.push(new Planet(x, y, 30, n));
     }
 }
