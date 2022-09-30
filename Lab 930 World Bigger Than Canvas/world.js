@@ -20,8 +20,8 @@ function World() {
   this.loadMovers();
 
   //Step 1::reduce world to fit inside of mini Canvas
-    //this.scaleX = ??
-    //this.scaleY = ??
+    //this.scaleX = 1/10;
+    //this.scaleY = 1/10;
     this.cnvMainLoc = new JSVector(0, 0);
 
       // add an event handler such that the a, s, w, d keys
@@ -97,7 +97,7 @@ World.prototype.getRandomColor = function () {
     "#02ab1a",
     "#ab5302",
     "#773e26",
-    "#ab0256",
+    "#ab3256",
     "#257874",
     "#78254e",
     "#787725"
