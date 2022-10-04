@@ -17,11 +17,11 @@ function World() {
   }
 
   this.movers = [];
-  this.loadMovers();
+  this.loadMovers(10);
 
   //Step 1::reduce world to fit inside of mini Canvas
-    //this.scaleX = 1/10;
-    //this.scaleY = 1/10;
+    this.scaleX = 1/10;
+    this.scaleY = 1/10;
     this.cnvMainLoc = new JSVector(0, 0);
 
       // add an event handler such that the a, s, w, d keys
@@ -55,9 +55,9 @@ function World() {
 World.prototype.run = function () {
   // Step Two:  Move cnvMain in the world and run movers  ########################################################
   //  Clear the rectangle in the main Canvas
-
+  ctxMain.clearRect(0, 0, cnvMain.width, cnvMain.height);
   //  move the main canvas inside of the world
-
+  
   //  scale the world to fit into the miniCanvas
 
   //  center the world inside of the miniCanvas
@@ -85,7 +85,7 @@ World.prototype.run = function () {
 
 //Load mover array
 World.prototype.loadMovers = function () {
-
+  
 }
 
 World.prototype.getRandomColor = function () {
