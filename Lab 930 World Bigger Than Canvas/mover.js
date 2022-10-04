@@ -7,7 +7,7 @@ function Mover(x,y) {
 //++++++++++++++++++++++++++++++++ mover methods
 Mover.prototype.run = function () {
   this.update();
-  this.checkEdges();
+  this.bounce();
   this.render();
 }
 
@@ -16,7 +16,7 @@ Mover.prototype.update = function () {
 }
 
 
-Mover.prototype.checkEdges = function () {
+Mover.prototype.bounce = function () {
   if(this.loc.x > canvas.width){
     this.vel.x = -this.vel.x;
   }
