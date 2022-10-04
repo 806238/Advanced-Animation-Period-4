@@ -54,14 +54,31 @@ function World() {
 // run the world in animation
 World.prototype.run = function () {
   // Step Two:  Move cnvMain in the world and run movers  ########################################################
+  this.ctxMain.beginPath();
+  this.ctxMain.moveTo(this.dims.left,0);
+  this.ctxMain.lineTo(this.dims.right,0);
+  this.ctxMain.strokeStyle = "red";
+  this.ctxMain.fillStyle = "red";
+  this.ctxMain.fill();
+  this.ctxMain.stroke();
+  this.ctxMain.closePath();
+  this.ctxMain.beginPath();
+  this.ctxMain.moveTo(0,this.dims.top);
+  this.ctxMain.lineTo(0,this.dims.bottom);
+  this.ctxMain.strokeStyle = "red";
+  this.ctxMain.fillStyle = "red";
+  this.ctxMain.fill();
+  this.ctxMain.stroke();
+  this.ctxMain.closePath();
+
   //  Clear the rectangle in the main Canvas
-  ctxMain.clearRect(0, 0, cnvMain.width, cnvMain.height);
+  //this.ctxMain.clearRect(0, 0, world.cnvMain.width, world.cnvMain.height);
   //  move the main canvas inside of the world
-  
+  this.ctxMain.translate(this.dims.left+this.cnvMain.width,0);
   //  scale the world to fit into the miniCanvas
-
+  
   //  center the world inside of the miniCanvas
-
+  
   //  run the movers in both canvas
 
   for (let i = 0; i < this.movers.length; i++) {
