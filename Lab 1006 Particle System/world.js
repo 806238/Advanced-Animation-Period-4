@@ -16,10 +16,7 @@ function World() {
     height: 3000
   }
 
-  this.movers = [];
-  this.loadMovers(500);
-
-  //Step 1::reduce world to fit inside of mini Canvas
+  //Step 1:reduce world to fit inside of mini Canvas
     this.scaleX = this.cnvMini.width/this.dims.width;
     this.scaleY = this.cnvMini.height/this.dims.height;
     this.cnvMainLoc = new JSVector(0, 0);
@@ -48,6 +45,7 @@ function World() {
             break;
         }
       }, false);
+      window.addEventListener("")
 }//++++++++++++++++++++++++++++++  end world constructor
 
 
@@ -103,10 +101,6 @@ World.prototype.run = function () {
 
   //  run the movers in both canvas
 
-  for (let i = 0; i < this.movers.length; i++) {
-    this.movers[i].run();
-  }
-
   //  restore the context
   this.ctxMain.restore();
   
@@ -142,13 +136,6 @@ World.prototype.run = function () {
   this.ctxMini.stroke();
   
   this.ctxMini.restore();
-}
-
-//Load mover array
-World.prototype.loadMovers = function (n) {
-  for(let i=0;i<n;i++){
-    this.movers.push(new Mover(Math.random()*(this.dims.right-this.dims.left)+this.dims.left, Math.random()*(this.dims.bottom-this.dims.top)+this.dims.top,this.ctxMain, this.ctxMini, this.getRandomColor()))
-  }
 }
 
 World.prototype.getRandomColor = function () {
