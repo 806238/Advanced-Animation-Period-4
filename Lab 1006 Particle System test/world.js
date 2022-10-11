@@ -54,8 +54,10 @@ this.particleSystems = [];
   n++;
   console.log(n);
   console.log(event);
-  this.cnvMainLoc();
-  world.particleSystems.push(new ParticleSystem(event.offsetX,event.offsetY,world.ctxMain, world.ctxMini, world.getRandomColor()))
+  this.mouseLoc = new JSVector(event.offsetX,event.offsetY);
+  this.mouseLoc = this.cnvMainLoc.addGetNew(this.mouseLoc);
+
+  world.particleSystems.push(new ParticleSystem(this.mouseLoc.x, this.mouseLoc.y, world.getRandomColor()))
 }
 
 }//++++++++++++++++++++++++++++++  end world constructor
