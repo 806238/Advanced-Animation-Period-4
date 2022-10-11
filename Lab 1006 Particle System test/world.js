@@ -17,9 +17,7 @@ function World() {
   }
 
 this.particleSystems = [];
-for(let i = 0;i<10;i++){
-this.particleSystems.push(new ParticleSystem(Math.random()*(this.dims.right-this.dims.left)+this.dims.left, Math.random()*(this.dims.bottom-this.dims.top)+this.dims.top,this.ctxMain, this.ctxMini, this.getRandomColor()))
-}
+
   //Step 1:reduce world to fit inside of mini Canvas
     this.scaleX = this.cnvMini.width/this.dims.width;
     this.scaleY = this.cnvMini.height/this.dims.height;
@@ -50,16 +48,18 @@ this.particleSystems.push(new ParticleSystem(Math.random()*(this.dims.right-this
         }
       }, false);
 
+  this.cnvMain.addEventListener("click", test);
+    var n = 0;
+  function test(event){
+  n++;
+  console.log(n);
+  console.log(event);
+  this.cnvMainLoc();
+  world.particleSystems.push(new ParticleSystem(event.offsetX,event.offsetY,world.ctxMain, world.ctxMini, world.getRandomColor()))
+}
+
 }//++++++++++++++++++++++++++++++  end world constructor
 
-window.addEventListener("click", test);
-
-  var n = 0;
-function test(){
-  n++;
-  console.log(n)
-
-}
 
 // run the world in animation
 World.prototype.run = function () {
