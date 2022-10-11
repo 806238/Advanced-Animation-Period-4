@@ -16,6 +16,10 @@ function World() {
     height: 3000
   }
 
+this.particleSystems = [];
+for(let i = 0;i<1;i++){
+this.particleSystems.push(new ParticleSystem(Math.random()*(this.dims.right-this.dims.left)+this.dims.left, Math.random()*(this.dims.bottom-this.dims.top)+this.dims.top,this.ctxMain, this.ctxMini, this.getRandomColor()))
+}
   //Step 1:reduce world to fit inside of mini Canvas
     this.scaleX = this.cnvMini.width/this.dims.width;
     this.scaleY = this.cnvMini.height/this.dims.height;
@@ -45,8 +49,9 @@ function World() {
             break;
         }
       }, false);
-      window.addEventListener("")
+
 }//++++++++++++++++++++++++++++++  end world constructor
+
 
 
 // run the world in animation
@@ -100,7 +105,9 @@ World.prototype.run = function () {
   //  center the world inside of the miniCanvas
 
   //  run the movers in both canvas
-
+  for (let i = 0; i < this.particleSystems.length; i++) {
+    this.particleSystems[i].run();
+  }
   //  restore the context
   this.ctxMain.restore();
   
@@ -137,6 +144,7 @@ World.prototype.run = function () {
   
   this.ctxMini.restore();
 }
+
 
 World.prototype.getRandomColor = function () {
   //  List of hex color values for movers
