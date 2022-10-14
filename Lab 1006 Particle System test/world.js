@@ -49,15 +49,12 @@ this.particleSystems = [];
       }, false);
 
   this.cnvMain.addEventListener("click", test);
-    var n = 0;
   function test(event){
-  n++;
-  console.log(n);
   console.log(event);
   this.mouseLoc = new JSVector(event.offsetX,event.offsetY);
-  this.mouseLoc = this.cnvMainLoc.addGetNew(this.mouseLoc);
+  this.mouseLoc.add(world.cnvMainLoc);
 
-  world.particleSystems.push(new ParticleSystem(this.mouseLoc.x, this.mouseLoc.y, world.getRandomColor()))
+  world.particleSystems.push(new ParticleSystem(this.mouseLoc.x, this.mouseLoc.y, world.ctxMain, world.ctxMini,world.getRandomColor()))
 }
 
 }//++++++++++++++++++++++++++++++  end world constructor
