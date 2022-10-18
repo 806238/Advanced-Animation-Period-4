@@ -8,19 +8,21 @@ function Snake(location, numSegs, segLength,ctx) {
     this.segLength = segLength;
     this.segments = [];
     this.loadSegments();
-    this.clr = "rgba(20,200,100,0.50)"
+    this.clr = "rgba(20,200,100,.5)"
     this.ctx = ctx;
     this.acc = new JSVector(0,0);
 }
 
 Snake.prototype.loadSegments = function () {
     for(let i = 0;i<this.numSegs;i++){
-        this.segments[i] = new JSVector(this.loc.x,this.loc.y);
-        console.log(this.segments[i]);
+        this.segments[i] = new Segment(this.loc.x,this.loc.y,this.clr,this.ctx);
     }
 }
 
 Snake.prototype.run = function () {
+    for(let i = 0;i<this.numSegs;i++){
+        this.segments[i].run();
+    }
     this.render();
     this.update();
     this.checkEdges();
@@ -34,28 +36,10 @@ Snake.prototype.render = function () {
         this.ctx.fillStyle = this.clr;
         this.ctx.fill();
         this.ctx.stroke();
-        for(let i = 0;i<this.segments.length;i++){
-        this.ctx.beginPath();
-        this.ctx.arc(this.segments[i].x,this.segments[i].y,10, 0, 2 * Math.PI);
-        this.ctx.closePath();
-        this.ctx.strokeStyle = this.clr;
-        this.ctx.fillStyle = this.clr;
-        this.ctx.fill();
-        this.ctx.stroke();
-        }
-    for(let i = 1;i<this.segments.length;i++){
-            this.ctx.beginPath();
-            this.ctx.moveTo(this.loc.x,this.loc.y);
-            this.ctx.lineTo(this.segments[i].x,this.segments[i].y);
-            this.ctx.closePath();
-            this.ctx.strokeStyle = 'Black';
-            this.ctx.lineWidth = 10;
-            this.ctx.stroke();
-        }
 }
 
 Snake.prototype.update = function () {
-   
+   this.loc.add(this.vel);
 }
 
 Snake.prototype.checkEdges = function(){
