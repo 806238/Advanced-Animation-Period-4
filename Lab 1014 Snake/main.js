@@ -3,7 +3,7 @@
 
 let world;   // a single global object
 let snakes = [];  
-let numSnakes = 1;  
+let numSnakes = 10;  
 
 window.onload = init;//  After the window has been loaded, go to init
 function init(){
