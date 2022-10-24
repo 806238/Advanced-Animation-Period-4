@@ -3,7 +3,7 @@
 function Snake(location, numSegs, segLength,ctx) {
     //  number of segments, segment length
     this.loc = location;
-    this.vel = new JSVector(Math.random()*4-2, Math.random()*4-2);
+    this.vel = new JSVector(Math.random()*20-10, Math.random()*20-10);
     this.numSegs = numSegs;
     this.segLength = segLength;
     this.segments = [];
