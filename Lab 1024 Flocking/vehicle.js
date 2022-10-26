@@ -45,22 +45,38 @@ function Vehicle(loc) {
   }
   //+++++++++++++++++++++++++++++++++  Flocking functions
   Vehicle.prototype.separate = function (v) {
+    
+    let sum = new JSVector(0,0);
+    let count = 0;
+    for(let i = 0;i<v.length;i++){
+      let diff = this.loc.distance(v[i].loc);
+      if(diff>0 && diff<this.desiredSep){
+        count++;
+        sum.add(v[i].loc);
+      }
+    }
     // A vector for average of separation forces
+    sum.divide(count);
+    let separationForce = new JSVector(0,0);
+    separationForce = sum;
     return separationForce;
   }
   
   Vehicle.prototype.align = function (v) {
     // A vector for average of align forces
+    
     return steeringForce;
   }
   
   Vehicle.prototype.cohesion = function (v) {
      // A vector for average of cohesion forces
+     
     return cohesionForce;
   }
   
   Vehicle.prototype.seek = function(target) {
     // A vector pointing from the location to the target
+    
     return steeringForce;
   }
   //+++++++++++++++++++++++++++++++++  Flocking functions
