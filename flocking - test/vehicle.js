@@ -55,19 +55,16 @@ Vehicle.prototype.separate = function () {
   let ds = this.desiredSep*this.desiredSep;
   let sum = new JSVector(0,0);
   let steer = new JSVector();
-  for (let currentVechicle = 0; currentVechicle < v.length; currentVechicle++) {
-    let count = 0;
-    for (let other = 0; other < v.length; other++) {
-       if(currentVechicle !== other){
-        let d = v[currentVechicle].loc.distanceSquared(v[other].loc);
+  let count = 0;
+  for (let i = 0; i < v.length; i++) {
+        let d = v[i].loc.distanceSquared(this.loc);
         if(d < ds){
-          let diff = JSVector.subGetNew(v[currentVechicle].loc, v[other].loc);
+          let diff = JSVector.subGetNew(this.loc,v[i].loc);
           diff.normalize();
           sum.add(diff);
           count++;
         }
        }
-    }
     
     if(count !== 0){
       sum.divide(count);
@@ -76,7 +73,6 @@ Vehicle.prototype.separate = function () {
       steer = JSVector.subGetNew(sum, this.vel);
       steer.limit(this.maxForce)
     }
-  }
   let separationForce = steer;
   return separationForce;
 }
