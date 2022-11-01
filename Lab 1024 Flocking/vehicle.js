@@ -1,8 +1,8 @@
 //  Vehicle constructor function +++++++++++++++++++++++++++++
 function Vehicle(loc) {
   this.loc = new JSVector(loc.x, loc.y);
-  let dx = Math.random() * 4 - 2;
-  let dy = Math.random() * 4 - 2;
+  let dx = Math.random() * 8 - 4;
+  let dy = Math.random() * 8 - 4;
   this.vel = new JSVector(dx, dy);
   this.acc = new JSVector(0, 0);
  
@@ -10,9 +10,8 @@ function Vehicle(loc) {
   this.maxSpeed = document.getElementById("slider2").value;  // %%%%%%%%%%%%%%%%%
   this.maxForce = document.getElementById("slider1").value;  // %%%%%%%%%%%%%%%%%
   //############################################################################# not attached to slider
-  this.desiredSep = 10;//  desired separation between vehicles
-
   this.scl = 3;
+  this.desiredSep = 25;//  desired separation between vehicles
 }
 
 //  placing methods in the prototype 
@@ -51,24 +50,20 @@ Vehicle.prototype.applyForce = function (force) {
 
 Vehicle.prototype.separate = function () {
   // A vector for average of separation forces
-  let v = world.vehicles;
-  let ds = this.desiredSep*this.desiredSep;
+  v = world.vehicles;
+  //ds = this.desiredSep*this.desiredSep;
   let sum = new JSVector(0,0);
   let steer = new JSVector();
-  for (let currentVechicle = 0; currentVechicle < v.length; currentVechicle++) {
-    let count = 0;
-    for (let other = 0; other < v.length; other++) {
-       if(currentVechicle !== other){
-        let d = v[currentVechicle].loc.distanceSquared(v[other].loc);
-        if(d < ds){
-          let diff = JSVector.subGetNew( v[currentVechicle].loc, v[other].loc);
-          diff.normalize();
-          sum.add(diff);
-          count++;
-        }
-       }
+  let count = 0;
+  for (let i = 0; i < v.length; i++) {
+    let d = this.loc.distance(v[i].loc);
+    if((d > 0)&&(d<this.desiredSep)){
+      let diff = JSVector.subGetNew(this.loc,v[i].loc);
+      diff.normalize();
+      diff.divide(d);
+      sum.add(diff);
+      count++;
     }
-    
     if(count !== 0){
       sum.divide(count);
       sum.normalize();

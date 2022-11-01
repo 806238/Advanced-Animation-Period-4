@@ -18,3 +18,7 @@ function animate(){
     world.run();    // run the world
   requestAnimationFrame(animate);
 }
+
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}

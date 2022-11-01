@@ -2,6 +2,7 @@ function World() {
     this.canvas = document.getElementById('canvas');
     this.ctx = this.canvas.getContext('2d'); // This is the context
     this.vehicles = [];
+    this.herder = new Mover(new JSVector(Math.floor(getRandomArbitrary(0, canvas.width)), Math.floor(getRandomArbitrary(0, canvas.height))));
     this.loadVehicles(111);
     // setup 6 sliders
     let updateSlider = function (e) {    // update event handler
@@ -26,6 +27,7 @@ World.prototype.run = function () {
     for (let v = 0; v < this.vehicles.length; v++) {
         this.vehicles[v].run(this.vehicles);
     }
+    this.herder.run();
 }
 
 World.prototype.loadVehicles = function (n) {
@@ -36,3 +38,5 @@ World.prototype.loadVehicles = function (n) {
         this.vehicles.push(new Vehicle(loc));
     }
 }
+
+
