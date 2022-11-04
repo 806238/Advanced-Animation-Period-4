@@ -11,7 +11,7 @@ function Vehicle(loc) {
   this.maxForce = document.getElementById("slider1").value;  // %%%%%%%%%%%%%%%%%
   //############################################################################# not attached to slider
   this.scl = 3;
-  this.desiredSep = 50;//  desired separation between vehicles
+  this.desiredSep = 20;//  desired separation between vehicles
 }
 
 //  placing methods in the prototype 
@@ -30,6 +30,8 @@ Vehicle.prototype.flock = function(vehicles) {
   let ali = this.align(vehicles);
   let coh = this.cohesion(vehicles);
   //  set multiples via sliders 
+  this.maxSpeed = document.getElementById("slider2").value;  // %%%%%%%%%%%%%%%%%
+  this.maxForce = document.getElementById("slider1").value;  // %%%%%%%%%%%%%%%%%
   let sepMult = document.getElementById("slider3").value; // %%%%%%%%%%%%%%%%%%
   let aliMult = document.getElementById("slider4").value;;  // %%%%%%%%%%%%%%%%%%
   let cohMult = document.getElementById("slider5").value;;    // %%%%%%%%%%%%%%%%%%
@@ -54,10 +56,11 @@ Vehicle.prototype.separate = function (v) {
   let sum = new JSVector(0,0);
   let steer = new JSVector();
   let count = 0;
+  let ds = this.desiredSep*this.desiredSep;
   for (let i = 0; i < v.length; i++) {
     let other = v[i];
-    let d = this.loc.distance(other.loc);
-    if((d > 0)&&(d<this.desiredSep)){
+    let d = this.loc.distanceSquared(other.loc);
+    if((d > 0)&&(d<ds)){
       let diff = JSVector.subGetNew(this.loc,other.loc);
       diff.normalize();
       diff.divide(d);
@@ -97,8 +100,8 @@ Vehicle.prototype.cohesion = function (v) {
    let count = 0;
    for(let i = 0;i<v.length;i++){
     let other = v[i];
-    let d = this.loc.distance(other.loc);
-    if((d>0)&&(d<neighbordist)){
+    let d = this.loc.distanceSquared(other.loc);
+    if((d>0)&&(d<neighbordist*neighbordist)){
       sum.add(other.loc);
       count++;
     }
@@ -124,10 +127,10 @@ Vehicle.prototype.seek = function(target) {
 //+++++++++++++++++++++++++++++++++  Flocking functions
 
 Vehicle.prototype.update = function () {
-  
-  
+  this.acc.limit(this.maxForce);
   this.vel.add(this.acc);
-  this.vel.limit(1);
+  this.acc.multiply(0);
+  this.vel.limit(this.maxSpeed);
   this.loc.add(this.vel);
  
 }
