@@ -11,7 +11,7 @@ function Vehicle(loc) {
   this.maxForce = document.getElementById("slider1").value;  // %%%%%%%%%%%%%%%%%
   //############################################################################# not attached to slider
   this.scl = 3;
-  this.desiredSep = 25;//  desired separation between vehicles
+  this.desiredSep = 50;//  desired separation between vehicles
 }
 
 //  placing methods in the prototype 
