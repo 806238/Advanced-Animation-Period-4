@@ -1,7 +1,5 @@
-
-
 body{
-   background-color: #013135;
+   background-color: #424242;
    margin:0;
  }
 
@@ -22,5 +20,5 @@ body{
   margin-top: 10px;
   background-color: #d5dee0;
   border-radius: 100%;
-  border: solid black 2px;
+  border: solid rgb(0, 0, 0) 2px;
 }
