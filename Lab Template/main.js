@@ -9,6 +9,8 @@ canvas = document.getElementById("cnv");
 
 function init(){
     animate();      // kick off the animation
+
+    
 }
 
 // every animation cycle
