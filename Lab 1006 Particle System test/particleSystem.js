@@ -13,7 +13,6 @@ ParticleSystem.prototype.run = function(){
         this.particles[i].run();
     }
     this.isDead();
-    
 }
 
 ParticleSystem.prototype.isDead = function(){

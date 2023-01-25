@@ -18,7 +18,7 @@ particle.prototype.run = function () {
 }
 
 particle.prototype.update = function () {
-    this.loc.add(this.vel)
+    this.loc.add(this.vel);
     this.vel.add(this.acc);
 }
 
