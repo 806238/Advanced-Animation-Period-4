@@ -8,15 +8,17 @@ function World() {
   
   
     this.dims = {
-      top: -1500,
-      left: -2000,
-      bottom: 1500,
-      right: 2000,
-      width: 4000,
-      height: 3000
+      top: -3000,
+      left: -4000,
+      bottom: 3000,
+      right: 4000,
+      width: 8000,
+      height: 6000
     }
 
     this.hero = [];
+    this.bg1 = [];
+    this.loadBackgounds(1);
     
     
   
@@ -76,7 +78,7 @@ function World() {
     this.ctxMain.lineTo(this.dims.right,0);
     this.ctxMain.closePath();
     this.ctxMini.lineWidth = 5;
-    this.ctxMain.strokeStyle = "white";
+    this.ctxMain.strokeStyle = "red";
     this.ctxMain.stroke();
   
     this.ctxMain.beginPath();
@@ -84,8 +86,18 @@ function World() {
     this.ctxMain.lineTo(0,this.dims.bottom);
     this.ctxMain.closePath();
     this.ctxMini.lineWidth = 5;
-    this.ctxMain.strokeStyle = "white";
+    this.ctxMain.strokeStyle = "red";
     this.ctxMain.stroke();
+
+    /*this.ctxMain.beginPath();
+    this.ctxMain.moveTo(800,0);
+    this.ctxMain.lineTo(800,50);
+    this.ctxMain.moveTo(800,100);
+    this.ctxMain.lineTo(800,200);
+    this.ctxMain.closePath();
+    this.ctxMini.lineWidth = 5;
+    this.ctxMain.strokeStyle = "red";
+    this.ctxMain.stroke();*/
   
     this.ctxMain.beginPath();
     this.ctxMain.moveTo(this.dims.left,this.dims.top);
@@ -106,8 +118,13 @@ function World() {
     for (let i = 0; i < this.hero.length; i++) {
         this.hero[i].run();
       }
+
+      for (let i = 0; i < this.bg1.length; i++) {
+        this.bg1[i].run(this.cnvMainLoc);
+        console.log(this.cnvMainLoc)
+      }
       
-      this.bg1.run();
+      
   
     //  restore the context
     
@@ -153,8 +170,10 @@ function World() {
       }
   }
 
-  World.prototype.loadBackgounds = function(){
-    this.bg1 = new Bg1(this.ctxMain);
+  World.prototype.loadBackgounds = function(n){
+    for(let i = 0;i<n;i++){
+      this.bg1.push(new Bg1(this.ctxMain));
+    }
   }
   
   

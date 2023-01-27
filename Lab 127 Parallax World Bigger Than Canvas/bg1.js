@@ -4,13 +4,14 @@ function Bg1(ctx){
     this.ctx = ctx;
 }
 
-Bg1.prototype.run = function(){
-    this.render();
+Bg1.prototype.run = function(loc){
+    this.render(loc);
 }
 
 Bg1.prototype.render = function(){
     this.ctx.beginPath();
-    this.ctx.rect(this.loc.x,this.loc.y,canvas.width,canvas.height);
+    this.ctx.rect(loc.x,loc.y,canvas.width,canvas.height);
+    console.log(loc);
     this.ctx.strokeStyle = "#00A6FF"
     this.ctx.fillStyle = "#00A6FF"
     this.ctx.stroke();
