@@ -1,0 +1,21 @@
+body {
+    background-color: #000000;
+    margin:0;
+  }
+ 
+ 
+ canvas {
+     border: solid rgb(255, 255, 255) 2px;
+     margin: 20px;
+     
+ }
+ 
+ #wrapperDiv{
+   border: solid rgb(255, 255, 255) 0px;
+   width:1510px;
+   height:710px;
+   float:left;
+   margin-left:150px;
+   margin-top: 30px;
+ }
+ 
