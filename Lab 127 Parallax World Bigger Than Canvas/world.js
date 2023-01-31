@@ -8,17 +8,24 @@ function World() {
   
   
     this.dims = {
-      top: -3000,
-      left: -4000,
-      bottom: 3000,
-      right: 4000,
-      width: 8000,
-      height: 6000
+      top: -150000,
+      left: -200000,
+      bottom: 150000,
+      right: 200000,
+      width: 400000,
+      height: 300000
     }
 
     this.hero = [];
     this.bg1 = [];
-    this.loadBackgounds(1);
+    this.bg2 = [];
+    this.bg3 = [];
+    this.platforms = []
+    this.loadBackgound1(1);
+    this.loadBackgound2(1);
+    this.loadBackgound3(1);
+    this.loadHero(1);
+    this.loadPlatforms(1);
     
     
   
@@ -115,15 +122,27 @@ function World() {
     
   
     //  center the world inside of the miniCanvas
-    for (let i = 0; i < this.hero.length; i++) {
-        this.hero[i].run();
-      }
 
       for (let i = 0; i < this.bg1.length; i++) {
         this.bg1[i].run(this.cnvMainLoc);
-        console.log(this.cnvMainLoc)
+        //console.log(this.cnvMainLoc)
+      }
+
+      for (let i = 0; i < this.bg2.length; i++) {
+        this.bg2[i].run(this.cnvMainLoc);
+      }
+
+      for (let i = 0; i < this.bg3.length; i++) {
+        this.bg3[i].run(this.cnvMainLoc);
       }
       
+      for (let i = 0; i < this.hero.length; i++) {
+        this.hero[i].run(this.cnvMainLoc);
+      }
+
+      for (let i = 0; i < this.platforms.length; i++) {
+        this.platforms[i].run(this.cnvMainLoc);
+      }
       
   
     //  restore the context
@@ -163,16 +182,33 @@ function World() {
     this.ctxMini.restore();
   }
 
-  World.prototype.loadHero = function(n,loc){
-    this.loc = loc;
+  World.prototype.loadHero = function(n){
     for(let i=0;i<n;i++){
-        this.hero.push(new Hero(this.loc, this.ctxMain));
+        this.hero.push(new Hero(this.ctxMain));
       }
   }
 
-  World.prototype.loadBackgounds = function(n){
+  World.prototype.loadBackgound1 = function(n){
     for(let i = 0;i<n;i++){
       this.bg1.push(new Bg1(this.ctxMain));
+    }
+  }
+
+  World.prototype.loadBackgound2 = function(n){
+    for(let i = 0;i<n;i++){
+      this.bg2.push(new Bg2(this.ctxMain));
+    }
+  }
+
+  World.prototype.loadBackgound3 = function(n){
+    for(let i = 0;i<n;i++){
+      this.bg3.push(new Bg3(this.ctxMain));
+    }
+  }
+
+  World.prototype.loadPlatforms = function(n){
+    for(let i = 0;i<n;i++){
+      this.platforms.push(new Platforms(this.ctxMain));
     }
   }
   
