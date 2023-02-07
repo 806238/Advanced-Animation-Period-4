@@ -7,10 +7,20 @@ function GameArea(){
     this.wrapperDiv.appendChild(this.tileMenuDiv)
     this.tileMenuDiv.setAttribute("style", " background-color:#FFFFFF; width:1100px; height:100px;float:left;");
 
+    this.lefttileMenuDiv = document.createElement("div");
+    this.wrapperDiv.appendChild(this.lefttileMenuDiv)
+    this.lefttileMenuDiv.setAttribute("style", " background-color:#FFFFFF; border: 0px solid black;width:100px; height:700px;float:left;");
+
+    this.righttileMenuDiv = document.createElement("div");
+    this.wrapperDiv.appendChild(this.righttileMenuDiv)
+    this.righttileMenuDiv.setAttribute("style", " background-color:#FFFFFF; border: 0px solid black;width:100px; height:700px;float:right;");
+
     // create canvasDiv
     this.canvasDiv = document.createElement("div");
     this.wrapperDiv.appendChild(this.canvasDiv)
     this.canvasDiv.setAttribute("style", " background-color:pink; width:1100px; height:700px;float:left;");
+
+    
 
     // place canvas in div and style
     this.canvasDiv.appendChild(canvas);
