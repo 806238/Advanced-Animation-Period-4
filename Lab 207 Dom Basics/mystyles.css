@@ -20,7 +20,34 @@ body{
   height:35px;
   margin-left: 80px;
   margin-top: 10px;
-  background-color: #d5dee0;
+  background-color: #0066ff;
   border-radius: 100%;
   border: solid black 2px;
 }
+
+.lefttile{
+  float:right;
+  padding:20px;
+  width:45px;
+  height:35px;
+  margin-left: 0px;
+  margin-top: 30px;
+  background-color: #00ff2f;
+  border-radius: 100%;
+  border: solid black 2px;
+}
+
+.righttile{
+  float:right;
+  padding:20px;
+  width:150px;
+  height:150px;
+  margin-left: 150px;
+  margin-top: 280px;
+  background-color: #ff0000;
+  border-radius: 100%;
+  border: solid black 2px;
+}
+
+
+
