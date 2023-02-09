@@ -11,25 +11,32 @@ function GameArea(){
     this.wrapperDiv.appendChild(this.lefttileMenuDiv)
     this.lefttileMenuDiv.setAttribute("style", " background-color:#000000; border: 0px solid black;width:100px; height:700px;float:left;");
 
+    this.canvasDiv = document.createElement("div");
+    this.wrapperDiv.appendChild(this.canvasDiv)
+    this.canvasDiv.setAttribute("style", " background-color:pink; border: 0px solid black; width:800px; height:600px;float:left;");
+
     this.righttileMenuDiv = document.createElement("div");
     this.wrapperDiv.appendChild(this.righttileMenuDiv)
     this.righttileMenuDiv.setAttribute("style", " background-color:#000000; border: 0px solid black;width:200px; height:700px;float:right;");
 
+    let myImage1 = new Image(200, 130);
+    myImage1.src = 'penguin.jpeg';
+    this.righttileMenuDiv.appendChild(myImage1); 
+    myImage1.setAttribute("style","border: 0px solid white;")
+
 
 
     // create canvasDiv
-    //this.canvasDiv = document.createElement("div");
-    //this.wrapperDiv.appendChild(this.canvasDiv)
-    //this.canvasDiv.setAttribute("style", " background-color:pink; border: 10px solid black; width:1100px; height:700px;float:left;");
+    
 
     
 
     // place canvas in div and style
-    //this.canvasDiv.appendChild(canvas);
+    this.canvasDiv.appendChild(canvas);
     //  create tiles for tile menu
     this.tiles = [];
     this.tileText = [];
-    for(let i = 0; i < 6; i++){
+    for(let i = 0; i < 8; i++){
        this.tiles[i] = document.createElement("div");
        this.tileMenuDiv.appendChild(this.tiles[i]);
        this.tiles[i].setAttribute("class", "tile");
@@ -55,6 +62,10 @@ function GameArea(){
       this.righttiles[i] = document.createElement("div");
       this.righttileMenuDiv.appendChild(this.righttiles[i]);
       this.righttiles[i].setAttribute("class", "righttile");
+      let myImage2= new Image(100, 80);
+      myImage2.src = 'dog.jpg';
+      this.righttiles[i].appendChild(myImage2); 
+      myImage2.setAttribute("class","dog")
       this.righttileText[i] = document.createTextNode("Big Button");
       //this.tText.style.padding = "10px";
       this.righttiles[i].appendChild(this.righttileText[i]);

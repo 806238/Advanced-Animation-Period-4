@@ -18,7 +18,7 @@ body{
   padding:20px;
   width:45px;
   height:35px;
-  margin-left: 80px;
+  margin-left: 55px;
   margin-top: 10px;
   background-color: #0066ff;
   border-radius: 100%;
@@ -26,11 +26,11 @@ body{
 }
 
 .lefttile{
-  float:right;
+  float:left;
   padding:20px;
   width:45px;
   height:35px;
-  margin-left: 0px;
+  margin-left: 5px;
   margin-top: 30px;
   background-color: #00ff2f;
   border-radius: 100%;
@@ -43,10 +43,14 @@ body{
   width:150px;
   height:150px;
   margin-left: 150px;
-  margin-top: 280px;
+  margin-top:180px;
   background-color: #ff0000;
   border-radius: 100%;
   border: solid black 2px;
+}
+
+.dog{
+  padding: 20px;;
 }
 
 
