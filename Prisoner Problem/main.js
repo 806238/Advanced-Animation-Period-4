@@ -8,9 +8,11 @@ canvas = document.getElementById("cnv");
     context = canvas.getContext("2d");
 let prisoners = [];
 
+
 function init(){
     animate();      // kick off the animation
-    loadArray(3);
+    loadArray(5);
+    loopLength(2)
     
 }
 
@@ -22,13 +24,12 @@ function animate() {
 
 function loadArray(n){
     for(let i=0;i<n;i++){
-        for(let j = 0;j<n;j++){
-            let temp = Math.floor(Math.random()*n)
-            prisoners[i] = temp;
-            if(prisoners[i] == prisoners[j]){
-                console.log(true)
-            }
-        }
+        prisoners[i] = i;
     }
-    console.log(prisoners)
+    prisoners.sort(()=>Math.random()-.5)
+    console.log(prisoners)  
+}
+
+function loopLength(pn){
+    
 }
